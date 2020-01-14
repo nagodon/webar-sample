@@ -28,6 +28,7 @@
                 console.log("add click event");
                 this.el.addEventListener('click', function (evt) {
                    console.log("click event");
+                   console.log(this);
                    window.location = this.data.href;
                 });
               }
