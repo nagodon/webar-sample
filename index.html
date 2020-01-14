@@ -13,15 +13,10 @@
               schema: {
                 href: {default: ''}
               },
-              init() {
-                console.log("init event");
-                var data = this.data;
-                console.log(this.el);
-        
-                 this.el.addEventListener('click', function () {
-                   console.log("click event");
-                   window.location = data.href;
-                 })
+              events: function (evt) {
+                click: {
+                   window.location = this.data.href;
+                }
               }
             });
         </script> 
