@@ -25,6 +25,7 @@
                 href: {default: ''}
               },
               init: function () {
+                console.log("add click event");
                 this.el.addEventListener('click', function (evt) {
                    console.log("click event");
                    window.location = this.data.href;
