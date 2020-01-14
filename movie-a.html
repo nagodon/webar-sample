@@ -39,12 +39,12 @@
 <body style="margin : 0px; overflow: hidden;">
     <a-scene embedded artoolkit="sourceType: webcam; detectionMode: mono; maxDetectionRate: 60; canvasWidth: 400; canvasHeight: 400">
         <a-assets>
-            <video id="vid" src="starbucks.mp4" preload="auto" poster="icon-starbucks.png" webkit-playsinline playsinline controls autoplay></video>
+            <video id="vid" src="starbucks.mp4" preload="auto" poster="icon-starbucks.png" webkit-playsinline controls autoplay></video>
         </a-assets>
         <a-marker id="memarker" preset="custom" type="pattern" url="pattern-marker.patt">
             <a-video src="#vid" width="1" height="1" position="0 0 1" rotation="-90 0 0"></a-video>
         </a-marker>
-        <a-entity camera></a-entity>
+        <a-entity camera><a-cursor></a-cursor></a-entity>
     </a-scene>
 </body>
 </html>
