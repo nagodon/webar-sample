@@ -9,28 +9,15 @@
         <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.1/dist/aframe-extras.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
-            //AFRAME.registerComponent('redirect', {
-            //  schema: {
-            //    href: {default: ''}
-            //  },
-            //  events: {
-            //    click: function (evt) {
-            //       console.log("click event");
-            //       window.location = this.data.href;
-            //    }
-            //  }
-            //});
             AFRAME.registerComponent('redirect', {
               schema: {
                 href: {default: ''}
               },
-              init: function () {
-                console.log("add click event");
-                this.el.addEventListener('click', function (evt) {
+              events: {
+                click: function (evt) {
                    console.log("click event");
-                   console.log(this);
                    window.location = this.data.href;
-                });
+                }
               }
             });
         </script> 
@@ -43,8 +30,7 @@
             </a-assets>
             <a-marker preset="custom" type="pattern" url="pattern-marker.patt">
                 <a-obj-model src="#3d-obj" mtl="#3d-mtl" position="0 0 0" rotation="60 -100 80" scale="1 1 1" redirect="href: https://www.starbucks.co.jp/;"></a-obj-model>
-                <a-text value="Starbucks" position="0 0 1" align="center" rotation="-90 0 0" color="#7993ff" redirect="href: https://www.starbucks.co.jp/;"></a-text>
-                <a-box position="-1 0.5 -1" rotation="0 45 0" color="#4CC3D9" shadow redirect="href: https://www.starbucks.co.jp/;"></a-box>
+                <a-text value="Starbucks" position="0 0 1" align="center" rotation="-90 0 0" color="#7993ff"></a-text>
             </a-marker>
             <a-entity camera><a-cursor></a-cursor></a-entity>
         </a-scene>
