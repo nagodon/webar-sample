@@ -13,8 +13,8 @@
               schema: {
                 href: {default: ''}
               },
-              events: function (evt) {
-                click: {
+              events: {
+                click: function (evt) {
                    window.location = this.data.href;
                 }
               }
