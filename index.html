@@ -14,10 +14,13 @@
                 href: {default: ''}
               },
               init() {
+                console.log("init event");
                 var data = this.data;
                 var el = this.el;
+                console.log(this.data);
         
                  this.el.addEventListener('click', function () {
+                   console.log("click event");
                    window.location = data.href;
                  })
               }
