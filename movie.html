@@ -1,52 +1,54 @@
 <html>
-<head>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.4/aframe/build/aframe-ar.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.1/dist/aframe-extras.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        AFRAME.registerComponent('vidhandler', {
-            init: function() {
-                this.toggle = false;
-                this.vid = document.querySelector("#vid");
-                this.vid.pause();
-            },
-            tick: function() {
-                if (this.el.object3D.visible == true) {
-                    if (!this.toggle) {
-                        this.toggle = true;
-                        this.vid.play();
-                    }
-                } else {
+    <head>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+        <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.4/aframe/build/aframe-ar.js"></script>
+        <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.1/dist/aframe-extras.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            AFRAME.registerComponent('vidhandler', {
+                init: function() {
                     this.toggle = false;
+                    this.vid = document.querySelector("#vid");
                     this.vid.pause();
+                },
+                tick: function() {
+                    if (this.el.object3D.visible == true) {
+                        if (!this.toggle) {
+                            this.toggle = true;
+                            this.vid.play();
+                        }
+                    } else {
+                        this.toggle = false;
+                        this.vid.pause();
+                    }
                 }
+            });
+
+            function refrespage() {
+                location.reload();
             }
-        });
 
-        function refrespage() {
-            location.reload();
-        }
-
-        function playvid() {
-            vid.play();
-        }
-    </script>
+            function playvid() {
+                vid.play();
+            }
+        </script>
     </head>
     <body style="margin : 0px; overflow: hidden;">
         <a-scene embedded artoolkit="sourceType: webcam; detectionMode: mono; maxDetectionRate: 60; canvasWidth: 400; canvasHeight: 400">
             <a-assets>
                 <video preload="auto" id="vid" poster="icon-starbucks.png" response-type="arraybuffer" loop="false" crossorigin webkit-playsinline playsinline controls autoplay muted>
-                <source  src="starbucks.mp4">
-                <img src="icon-starbucks.png"> Your browser does not support Or Else Please Click Reset Button.
-            </video>
-        </a-assets>
-        <a-marker id="memarker" preset="custom" type="pattern" url="pattern-marker.patt" vidhandler>
-            <a-plane position='0 0.1 0' rotation="-90 0 0" material="transparent:true;src:#vid" controls></a-plane>
-        </a-marker>
-        <a-entity camera></a-entity>
-    </a-scene>
-</body>
+                    <source  src="starbucks.mp4">
+                    <img src="icon-starbucks.png"> Your browser does not support Or Else Please Click Reset Button.
+                </video>
+            </a-assets>
+            <a-marker id="memarker" preset="custom" type="pattern" url="pattern-marker.patt" vidhandler>
+                <a-plane position='0 0.1 0' rotation="-90 0 0" material="transparent:true;src:#vid" controls data-clickable></a-plane>
+            </a-marker>
+            <a-entity camera>
+                <a-cursor cursor="rayOrigin: mouse; fuseTimeout: 10000;" raycaster="objects: [data-clickable];"></a-cursor>
+            </a-entity>
+        </a-scene>
+    </body>
 </html>
